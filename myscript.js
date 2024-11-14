@@ -31,4 +31,19 @@ window.addEventListener("load", () => {let i = 0;
     };
 });
 
-//eventlistener with  a window prompt (type number). The answer goes into a a conditional that makes sure the number is under 100 and then creates that many squares in the edge. 
+reset.addEventListener("click", () =>{
+    let newSquares = Number(window.prompt("How many number of squares per side do you want in your grid?", "50"));
+        
+        if(newSquares>100 || newSquares<0) {
+            let newSquares = Number(window.prompt("Invalid input, choose between 0 and 100 per side", "50"));
+            console.log(newSquares);
+            //use continue here?
+
+        } else if (newSquares == NaN) {
+            let newSquares = Number(window.prompt("Invalid input, choose between 0 and 100 per side", "50"));
+            console.log(newSquares);
+            //use continue here?}
+        
+        } else {console.log(newSquares); return newSquares};
+});
+
