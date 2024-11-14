@@ -8,6 +8,11 @@
     border-radius:4px;
     padding:1em 2em 1em 2em;
 }
+.resetB:hover {
+    scale:1.1;
+    background-color: rgb(1, 180, 180);
+    border:solid black 2px;
+}
 
 .body {
     display: flex;
@@ -32,6 +37,9 @@
     flex-shrink: 1;
 }
 
-.square:hover {
+.squareMoused {
     background-color: black;
+    height: 60px;
+    width: 60px;
+    flex-shrink: 1;
 }
