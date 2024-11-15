@@ -11,8 +11,17 @@ body.insertBefore(reset, edge);
 const gridSquare = document.createElement("div");
 gridSquare.classList.add("square");
 
-window.addEventListener("load", () => {let i = 0;
-    let numberOfSquares = 255;
+let numberOfSquares = 255;
+
+function newGrid(squares) {
+    let i = 0;
+
+    if (edge.contains(gridSquare)) {
+        edge.forEach(gridSquare => {
+           edge.removeChild(gridSquare) 
+        });
+    };
+    
     while (i <= numberOfSquares) {
   
         const gridSquare = document.createElement("div");
@@ -29,7 +38,9 @@ window.addEventListener("load", () => {let i = 0;
 
         i++;
     };
-});
+};
+
+window.addEventListener("load", newGrid(numberOfSquares));
 
 reset.addEventListener("click", () =>{
     let newSquares;
@@ -39,7 +50,7 @@ reset.addEventListener("click", () =>{
 
         if (input === null) {
             return;
-        }
+        };
         
         newSquares = Number(input);
 
@@ -53,7 +64,9 @@ reset.addEventListener("click", () =>{
 
         } else {
             console.log(`User selected ${newSquares} squares per side.`);
-            return newSquares;
+
+            numberOfSquares = newSquares;
+            return newGrid(newSquares);
         };
     };
 });
