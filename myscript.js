@@ -15,13 +15,14 @@ let numberOfSquares = 255;
 
 function newGrid(squares) {
     let i = 0;
+    let o = 0
 
-    if (edge.contains(gridSquare)) {
-        edge.forEach(gridSquare => {
-           edge.removeChild(gridSquare) 
-        });
+    if (edge.querySelector(".square")) {
+        while (edge.firstChild) {
+            edge.removeChild(edge.firstChild);
+        }
     };
-    
+        
     while (i <= numberOfSquares) {
   
         const gridSquare = document.createElement("div");
@@ -66,7 +67,7 @@ reset.addEventListener("click", () =>{
             console.log(`User selected ${newSquares} squares per side.`);
 
             numberOfSquares = newSquares;
-            return newGrid(newSquares);
+            return newGrid(numberOfSquares);
         };
     };
 });
