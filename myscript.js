@@ -17,13 +17,13 @@ function newGrid(squares) {
     let i = 0;
     let o = 0
 
-    if (edge.querySelector(".square")) {
+    if (edge.querySelector(".square") || edge.querySelector(".squareMoused")) {
         while (edge.firstChild) {
             edge.removeChild(edge.firstChild);
         }
     };
         
-    while (i <= numberOfSquares) {
+    while (i < numberOfSquares) {
   
         const gridSquare = document.createElement("div");
         gridSquare.classList.add("square");
@@ -66,7 +66,7 @@ reset.addEventListener("click", () =>{
         } else {
             console.log(`User selected ${newSquares} squares per side.`);
 
-            numberOfSquares = newSquares;
+            numberOfSquares = newSquares * newSquares;
             return newGrid(numberOfSquares);
         };
     };
