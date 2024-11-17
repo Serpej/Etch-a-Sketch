@@ -19,15 +19,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #09E8F6;
+    background-color: #7ce6ee;
 }
 
 #edge {
     display: flex;
     flex-wrap: wrap;
     width: 960px;
-    height: 960px;
-    border: solid red 30px;
+    max-height: 960px;
+    border: solid rgb(248, 53, 53) 30px;
+    border-radius: 4px;
 
 }
 
@@ -36,11 +37,17 @@
     height: 60px;
     width: 60px;
     flex-shrink: 1;
-
 }
 
 .squareMoused {
     background-color: black;
+    height: 60px;
+    width: 60px;
+    flex-shrink: 1;
+}
+
+.customSquareSize {
+    background-color: grey;
     height: 60px;
     width: 60px;
     flex-shrink: 1;
