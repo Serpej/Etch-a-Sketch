@@ -7,26 +7,25 @@ reset.classList.add("resetB");
 reset.textContent = "Reset"
 body.insertBefore(reset, edge);
 
-
 const gridSquare = document.createElement("div");
 gridSquare.classList.add("square");
 
-let numberOfSquares = 255;
+let numberOfSquares = 256;
 
-function newGrid(squares) {
-    let i = 0;
-    let o = 0
+function newGrid(numberOfSquares, newSquareSize) {
 
     if (edge.querySelector(".square") || edge.querySelector(".squareMoused")) {
         while (edge.firstChild) {
             edge.removeChild(edge.firstChild);
         }
     };
-        
+
+    let i = 0; 
     while (i < numberOfSquares) {
   
         const gridSquare = document.createElement("div");
         gridSquare.classList.add("square");
+        gridSquare.setAttribute("styles", `width: ${newSquareSize}; height: ${newSquareSize};`)
 
         gridSquare.addEventListener("mouseenter", (event) => {
             event.target.classList.add("squareMoused");    
@@ -35,7 +34,6 @@ function newGrid(squares) {
         );
 
         edge.appendChild(gridSquare);
-        console.log(i);
 
         i++;
     };
@@ -43,8 +41,10 @@ function newGrid(squares) {
 
 window.addEventListener("load", newGrid(numberOfSquares));
 
+let newSquares;
+
 reset.addEventListener("click", () =>{
-    let newSquares;
+
 
     while(true) {
         let input = window.prompt("How many number of squares per side do you want in your grid?", "50");
@@ -57,17 +57,17 @@ reset.addEventListener("click", () =>{
 
         if (isNaN(newSquares)) {
             alert("Invalid input, choose between 0 and 100 per side", "50");
-            console.log(newSquares);
 
         } else if(newSquares>100 || newSquares<0) {
             alert("Invalid input, choose between 0 and 100 per side", "50");
-            console.log(newSquares);
 
         } else {
             console.log(`User selected ${newSquares} squares per side.`);
 
-            numberOfSquares = newSquares * newSquares;
-            return newGrid(numberOfSquares);
+            numberOfSquares = (newSquares * newSquares);
+            let newSquareSize = (960 / newSquares);
+            console.log(newSquareSize);
+            return newGrid(numberOfSquares, newSquareSize);
         };
     };
 });
