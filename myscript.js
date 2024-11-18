@@ -4,8 +4,13 @@ const edge = document.querySelector("#edge");
 
 const reset = document.createElement("button");
 reset.classList.add("resetB");
-reset.textContent = "Reset"
+reset.textContent = "Press to set Grid"
 body.insertBefore(reset, edge);
+
+const h1 = document.createElement("h1");
+h1.textContent= "Etch a Sketch! Hover over the grey area!";
+h1.classList.add("topic");
+body.insertBefore(h1,reset);
 
 const gridSquare = document.createElement("div");
 gridSquare.classList.add("square");
