@@ -8,10 +8,15 @@
     border-radius:4px;
     padding:1em 2em 1em 2em;
 }
+
 .resetB:hover {
     scale:1.1;
     background-color: #288DD7;
     border:solid black 2px;
+}
+
+.topic {
+    margin-top: 2em;
 }
 
 .body {
