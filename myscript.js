@@ -17,26 +17,58 @@ function newGrid(numberOfSquares, newSquareSize) {
     if (edge.querySelector(".square") || edge.querySelector(".squareMoused")) {
         while (edge.firstChild) {
             edge.removeChild(edge.firstChild);
-        }
-    };
+        };
 
-    let i = 0; 
-    while (i < numberOfSquares) {
+        let i = 0;
+        while (i < numberOfSquares) {
+            const gridSquare = document.createElement("div");
+            gridSquare.classList.add("customSquare");
+            gridSquare.setAttribute("style", `width: ${newSquareSize}px; height: ${newSquareSize}px;`);
+            gridSquare.addEventListener("mouseenter", (event) => {
+                event.target.classList.add("customSquareMoused"); 
+                event.target.classList.remove("customSquare");
+            });
+    
+            edge.appendChild(gridSquare);
+    
+            i++;
+        };
+
+        } else if (edge.querySelector(".customSquare") || edge.querySelector(".customSquareMoused")) {
+            while (edge.firstChild) {
+                edge.removeChild(edge.firstChild);
+            };
+            
+            let i = 0;
+            while (i < numberOfSquares) {
+                const gridSquare = document.createElement("div");
+                gridSquare.classList.add("customSquare");
+                gridSquare.setAttribute("style", `width: ${newSquareSize}px; height: ${newSquareSize}px;`);
+                gridSquare.addEventListener("mouseenter", (event) => {
+                    event.target.classList.add("customSquareMoused");    
+                    event.target.classList.remove("customSquare");
+                });
+        
+                edge.appendChild(gridSquare);
+        
+                i++;
+            };
+        } else {
+            let i = 0; 
+            while (i < numberOfSquares) {
   
-        const gridSquare = document.createElement("div");
-        gridSquare.classList.add("square");
-        gridSquare.setAttribute("styles", `width: ${newSquareSize}; height: ${newSquareSize};`)
+                const gridSquare = document.createElement("div");
+                gridSquare.classList.add("square");
+                gridSquare.addEventListener("mouseenter", (event) => {
+                event.target.classList.add("squareMoused");    
+                event.target.classList.remove("square");
+            });
+            
+            edge.appendChild(gridSquare);
 
-        gridSquare.addEventListener("mouseenter", (event) => {
-            event.target.classList.add("squareMoused");    
-            event.target.classList.remove("square"); 
-            }
-        );
-
-        edge.appendChild(gridSquare);
-
-        i++;
-    };
+            i++;
+            };
+        };
 };
 
 window.addEventListener("load", newGrid(numberOfSquares));
@@ -71,4 +103,3 @@ reset.addEventListener("click", () =>{
         };
     };
 });
-
