@@ -46,9 +46,12 @@
     flex-shrink: 1;
 }
 
-.customSquareSize {
+.customSquare {
     background-color: grey;
-    height: 60px;
-    width: 60px;
+    flex-shrink: 1;
+}
+
+.customSquareMoused {
+    background-color: black;
     flex-shrink: 1;
 }
