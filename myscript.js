@@ -2,10 +2,15 @@ const body = document.querySelector(".body");
 
 const edge = document.querySelector("#edge");
 
+const rainbow = document.createElement("button");
+rainbow.classList.add("rainbowB");
+rainbow.textContent = "Toggle rainbow mode";
+body.insertBefore(rainbow, edge);
+
 const reset = document.createElement("button");
 reset.classList.add("resetB");
 reset.textContent = "Press to set Grid"
-body.insertBefore(reset, edge);
+body.insertBefore(reset, rainbow);
 
 const h1 = document.createElement("h1");
 h1.textContent= "Etch a Sketch! Hover over the grey area!";
@@ -19,6 +24,7 @@ let numberOfSquares = 256;
 
 function newGrid(numberOfSquares, newSquareSize) {
 
+    // If the edge has custom squares or original squares in them, remove them and add custom squares.
     if (edge.querySelector(".square") || edge.querySelector(".squareMoused")) {
         while (edge.firstChild) {
             edge.removeChild(edge.firstChild);
@@ -27,10 +33,14 @@ function newGrid(numberOfSquares, newSquareSize) {
         let i = 0;
         while (i < numberOfSquares) {
             const gridSquare = document.createElement("div");
+            let r = getRandomIntInclusive(0, 255);
+            let g = getRandomIntInclusive(0, 255);
+            let b = getRandomIntInclusive(0, 255);
             gridSquare.classList.add("customSquare");
             gridSquare.setAttribute("style", `width: ${newSquareSize}px; height: ${newSquareSize}px;`);
             gridSquare.addEventListener("mouseenter", (event) => {
-                event.target.classList.add("customSquareMoused"); 
+                event.target.classList.add("customSquareMoused");
+                event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}`;
                 event.target.classList.remove("customSquare");
             });
     
@@ -47,10 +57,14 @@ function newGrid(numberOfSquares, newSquareSize) {
             let i = 0;
             while (i < numberOfSquares) {
                 const gridSquare = document.createElement("div");
+                let r = getRandomIntInclusive(0, 255);
+                let g = getRandomIntInclusive(0, 255);
+                let b = getRandomIntInclusive(0, 255);
                 gridSquare.classList.add("customSquare");
                 gridSquare.setAttribute("style", `width: ${newSquareSize}px; height: ${newSquareSize}px;`);
                 gridSquare.addEventListener("mouseenter", (event) => {
-                    event.target.classList.add("customSquareMoused");    
+                    event.target.classList.add("customSquareMoused"); 
+                    event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}`;   
                     event.target.classList.remove("customSquare");
                 });
         
@@ -58,6 +72,7 @@ function newGrid(numberOfSquares, newSquareSize) {
         
                 i++;
             };
+        // If edge doesn't have squares inside, create the preset 16x16 square grid.
         } else {
             let i = 0; 
             while (i < numberOfSquares) {
@@ -108,3 +123,12 @@ reset.addEventListener("click", () =>{
         };
     };
 });
+
+rainbow.addEventListener("click", () =>{});
+
+
+function getRandomIntInclusive(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+};
