@@ -22,10 +22,12 @@ gridSquare.classList.add("square");
 
 let numberOfSquares = 256;
 
+let isRainbowMode = false;
+
 function newGrid(numberOfSquares, newSquareSize) {
 
     // If the edge has custom squares or original squares in them, remove them and add custom squares.
-    if (edge.querySelector(".square") || edge.querySelector(".squareMoused")) {
+    if (edge.querySelector(".square") || edge.querySelector(".squareMoused") || edge.querySelector(".customSquare") || edge.querySelector(".customSquareMoused")) {
         while (edge.firstChild) {
             edge.removeChild(edge.firstChild);
         };
@@ -33,55 +35,46 @@ function newGrid(numberOfSquares, newSquareSize) {
         let i = 0;
         while (i < numberOfSquares) {
             const gridSquare = document.createElement("div");
-            let r = getRandomIntInclusive(0, 255);
-            let g = getRandomIntInclusive(0, 255);
-            let b = getRandomIntInclusive(0, 255);
             gridSquare.classList.add("customSquare");
             gridSquare.setAttribute("style", `width: ${newSquareSize}px; height: ${newSquareSize}px;`);
             gridSquare.addEventListener("mouseenter", (event) => {
+                if (isRainbowMode) {
+                    let r = getRandomIntInclusive(0, 255);
+                    let g = getRandomIntInclusive(0, 255);
+                    let b = getRandomIntInclusive(0, 255);
+                    event.target.classList.add("customSquareMoused");
+                    event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}`;
+                    event.target.classList.remove("customSquare");
+                } else {
                 event.target.classList.add("customSquareMoused");
-                event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}`;
                 event.target.classList.remove("customSquare");
+                };
             });
     
             edge.appendChild(gridSquare);
     
             i++;
         };
-
-        } else if (edge.querySelector(".customSquare") || edge.querySelector(".customSquareMoused")) {
-            while (edge.firstChild) {
-                edge.removeChild(edge.firstChild);
-            };
-            
-            let i = 0;
-            while (i < numberOfSquares) {
-                const gridSquare = document.createElement("div");
-                let r = getRandomIntInclusive(0, 255);
-                let g = getRandomIntInclusive(0, 255);
-                let b = getRandomIntInclusive(0, 255);
-                gridSquare.classList.add("customSquare");
-                gridSquare.setAttribute("style", `width: ${newSquareSize}px; height: ${newSquareSize}px;`);
-                gridSquare.addEventListener("mouseenter", (event) => {
-                    event.target.classList.add("customSquareMoused"); 
-                    event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}`;   
-                    event.target.classList.remove("customSquare");
-                });
-        
-                edge.appendChild(gridSquare);
-        
-                i++;
-            };
         // If edge doesn't have squares inside, create the preset 16x16 square grid.
         } else {
+
             let i = 0; 
             while (i < numberOfSquares) {
   
                 const gridSquare = document.createElement("div");
                 gridSquare.classList.add("square");
                 gridSquare.addEventListener("mouseenter", (event) => {
-                event.target.classList.add("squareMoused");    
-                event.target.classList.remove("square");
+                    if (isRainbowMode) {
+                        let r = getRandomIntInclusive(0, 255);
+                        let g = getRandomIntInclusive(0, 255);
+                        let b = getRandomIntInclusive(0, 255);
+                        event.target.classList.add("squareMoused");
+                        event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}`;
+                        event.target.classList.remove("square");
+                    } else {
+                    event.target.classList.add("squareMoused");
+                    event.target.classList.remove("square");
+                    };
             });
             
             edge.appendChild(gridSquare);
@@ -124,7 +117,12 @@ reset.addEventListener("click", () =>{
     };
 });
 
-rainbow.addEventListener("click", () =>{});
+rainbow.addEventListener("click", () =>{
+    isRainbowMode = !isRainbowMode;
+    rainbow.textContent = isRainbowMode ? "Disable Rainbow Mode" : "Enable Rainbow Mode";
+    body.style.backgroundColor = isRainbowMode ? `rgb(46, 46, 46)` : "";
+    h1.style.color = isRainbowMode ? `rgb(255, 255, 255)` : "";
+});
 
 
 function getRandomIntInclusive(min, max) {
