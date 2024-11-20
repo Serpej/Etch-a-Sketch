@@ -13,7 +13,7 @@ reset.textContent = "Press to set Grid"
 body.insertBefore(reset, rainbow);
 
 const h1 = document.createElement("h1");
-h1.textContent= "Etch a Sketch! Hover over the grey area!";
+h1.textContent= "Etch-a-Sketch! Hover over the grey area!";
 h1.classList.add("topic");
 body.insertBefore(h1,reset);
 
