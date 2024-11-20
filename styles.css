@@ -48,7 +48,7 @@
 }
 
 .square {
-    background-color: grey;
+    background-color: rgb(128, 128, 128);
     height: 60px;
     width: 60px;
     flex-shrink: 1;
