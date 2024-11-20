@@ -47,15 +47,17 @@ function newGrid(numberOfSquares, newSquareSize) {
                     event.target.classList.remove("customSquare");
 
                     setTimeout(() => {
-                        gridSquare.style.backgroundColor = "rgb(128, 128, 128)";
+                        event.target.classList.add("customSquare");
+                        event.target.style.backgroundColor = "";
+                        event.target.classList.remove("customSquareMoused");
                     }, 1000);
 
                 } else {
                 event.target.classList.add("customSquareMoused");
                 event.target.classList.remove("customSquare");
-
                 setTimeout(() => {
-                    gridSquare.style.backgroundColor = "rgb(128, 128, 128)";
+                    event.target.classList.add("customSquare");
+                    event.target.classList.remove("customSquareMoused");
                 }, 1000);
 
                 };
@@ -81,17 +83,19 @@ function newGrid(numberOfSquares, newSquareSize) {
                         event.target.classList.add("squareMoused");
                         event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}`;
                         event.target.classList.remove("square");
-
                         setTimeout(() => {
-                            gridSquare.style.backgroundColor = "rgb(128, 128, 128)";
+                            event.target.classList.add("square");
+                            event.target.style.backgroundColor = "";
+                            event.target.classList.remove("squareMoused");
+    
                         }, 1000);
 
                     } else {
                     event.target.classList.add("squareMoused");
                     event.target.classList.remove("square");
-
                     setTimeout(() => {
-                        gridSquare.style.backgroundColor = "rgb(128, 128, 128)";
+                        event.target.classList.add("square");
+                        event.target.classList.remove("squareMoused");
                     }, 1000);
 
                     };
