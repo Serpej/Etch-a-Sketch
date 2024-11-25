@@ -135,7 +135,7 @@ reset.addEventListener("click", () =>{
             console.log(`User selected ${newSquares} squares per side.`);
 
             numberOfSquares = (newSquares * newSquares);
-            let newSquareSize = (960 / newSquares);
+            let newSquareSize = (480 / newSquares);
             console.log(newSquareSize);
             return newGrid(numberOfSquares, newSquareSize);
         };
